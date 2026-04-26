@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Photojournalism Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+  </head>
+  <body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">Harrison Tun</a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="navLinks">
+          Menu
+        </button>
+
+        <div id="navLinks" class="nav-links">
+          <a class="active" href="index.html">Home</a>
+          <a href="gallery.html">Gallery</a>
+          <a href="about.html">About</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero">
+        <div class="hero-inner">
+          <p class="kicker">Photojournalism Portfolio</p>
+          <h1>Stories and moments of a time<br><em>in Europe</em> — told<br>in 30 frames.</h1>
+          <p class="lead">
+            A time of growth, culture, and learning!
+          </p>
+          <div class="hero-actions">
+            <a class="btn" href="gallery.html">View the Gallery</a>
+            <a class="btn btn-ghost" href="about.html">Read the Statement</a>
+          </div>
+        </div>
+        <div class="hero-scroll-hint">
+          <span>Scroll</span>
+          <div class="scroll-line"></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="container">
+          <div class="section-header">
+            <h2>Featured</h2>
+          </div>
+
+          <div class="featured-grid">
+            <figure class="card">
+              <img class="featured-img" src="photos/mitch.jpg" alt="Stage performance at Féria">
+              <figcaption>
+                <strong>Féria de Cadíz</strong>
+                <span class="muted">Cadíz • 2/14</span>
+              </figcaption>
+            </figure>
+
+            <figure class="card">
+              <img class="featured-img" src="photos/rainbow.JPG" alt="Stage performance at Féria">
+              <figcaption>
+                <strong>Rain and Sunshine</strong>
+                <span class="muted">Tenerife South • 3/23</span>
+              </figcaption>
+            </figure>
+
+            <figure class="card">
+              <img class="featured-img" src="photos/grafiti.jpg" alt="Stage performance at Féria">
+              <figcaption>
+                <strong>Portada Lighting</strong>
+                <span class="muted">Portada • 4/21</span>
+              </figcaption>
+            </figure>
+
+            <figure class="card">
+              <img class="featured-img" src="photos/Mountain.jpg" alt="Stage performance at Féria">
+              <figcaption>
+                <strong>Seeing Sights</strong>
+                <span class="muted">Málaga • 2/22</span>
+              </figcaption>
+            </figure>
+
+            <figure class="card">
+              <img class="featured-img" src="photos/morrocco2.jpg" alt="Stage performance at Féria">
+              <figcaption>
+                <strong>Night in the Desert</strong>
+                <span class="muted">Morrocco • 3/6</span>
+              </figcaption>
+            </figure>
+
+            <figure class="card">
+              <img class="featured-img" src="photos/golf.jpg" alt="Stage performance at Féria">
+              <figcaption>
+                <strong>Golfing on the coast of Ireland</strong>
+                <span class="muted">Dublin • 3/14</span>
+              </figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section section-alt">
+        <div class="container two-col">
+          <div>
+            <h2>Project Overview</h2>
+            <p>
+              From a student's perspective, travelling to a different country can be scary. Now travel to a different continent. This is a collection of the photos and experiences that tell tries to tell a story of my time in Europe.
+            </p>
+            <ul class="bullets">
+              <li><strong>Theme:</strong> Travel</li>
+              <li><strong>Coverage:</strong> 30 images showing the different landscapes, architecture, people, and more!</li>
+              <li><strong>Tools:</strong> shot on an iPhone</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <h3>Quick links</h3>
+            <p class="muted">Check out what you'd like!</p>
+            <div class="stack">
+              <a class="btn btn-ghost" href="gallery.html">Gallery (30)</a>
+              <a class="btn btn-ghost" href="about.html">Artist Statement</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <span>© <span id="year"></span> Harrison Tun</span>
+        <span class="muted">Photojournalism Portfolio</span>
+      </div>
+    </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const toggle = document.querySelector(".nav-toggle");
+      const links = document.getElementById("navLinks");
+      toggle?.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        links.classList.toggle("open");
+      });
+    // </script>
+    <script src="background.js"></script>
+  </body>
+</html>

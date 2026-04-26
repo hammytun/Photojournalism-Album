@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About • Photojournalism Portfolio</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <canvas id="bg-canvas"></canvas>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header">
+      <nav class="nav" aria-label="Primary">
+        <a class="brand" href="index.html">Your Name</a>
+
+        <button class="nav-toggle" aria-expanded="false" aria-controls="navLinks">
+          Menu
+        </button>
+
+        <div id="navLinks" class="nav-links">
+          <a href="index.html">Home</a>
+          <a href="gallery.html">Gallery</a>
+          <a class="active" href="about.html">About</a>
+        </div>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section">
+        <div class="container narrow">
+          <h1>About</h1>
+          <p class="muted">Artist statement / project statement.</p>
+
+          <div class="prose">
+            <h2>Project Statement</h2>
+            <p>
+              A photo-based website showcasing highlights from my semester abroad in Europe. The site features images from different cities, landmarks, and everyday experiences, offering a simple visual snapshot of my time traveling, studying, and exploring abroad.
+            </p>
+
+            <h2>Bio</h2>
+            <p>
+              Hi! I am Harrison and this is a collection of memories and scenes throughout my semester abroad in Europe. I tried to capture every moment that epitomizes the experiences and friends I have made along the way!
+            </p>
+
+            <h2>Gear / Workflow</h2>
+            <ul>
+              <li>Camera + lens</li>
+              <li>Editing software</li>
+              <li>Captioning approach</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+
+      const toggle = document.querySelector(".nav-toggle");
+      const links = document.getElementById("navLinks");
+      toggle?.addEventListener("click", () => {
+        const expanded = toggle.getAttribute("aria-expanded") === "true";
+        toggle.setAttribute("aria-expanded", String(!expanded));
+        links.classList.toggle("open");
+      });
+    </script>
+    <script src="background.js"></script>
+  </body>
+</html>
