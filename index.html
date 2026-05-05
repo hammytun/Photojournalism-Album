@@ -57,7 +57,7 @@
             <figure class="card">
               <img class="featured-img" src="compressed/mitch.jpg" alt="Stage performance at Féria">
               <figcaption>
-                <strong>Féria de Cadíz</strong>
+                <strong>Walking Into the Sunset</strong>
                 <span class="muted">Cadíz • 2/14</span>
               </figcaption>
             </figure>
@@ -73,7 +73,7 @@
             <figure class="card">
               <img class="featured-img" src="compressed/grafiti.jpg" alt="Stage performance at Féria">
               <figcaption>
-                <strong>Street Art</strong>
+                <strong>Street art layered across the steps of Málaga</strong>
                 <span class="muted">Málaga • 2/22</span>
               </figcaption>
             </figure>
@@ -81,7 +81,7 @@
             <figure class="card">
               <img class="featured-img" src="compressed/Mountain.jpg" alt="Stage performance at Féria">
               <figcaption>
-                <strong>Seeing Sights</strong>
+                <strong>Reaching New Heights</strong>
                 <span class="muted">Málaga • 2/22</span>
               </figcaption>
             </figure>
@@ -138,17 +138,105 @@
       </div>
     </footer>
 
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" aria-hidden="true">
+      <div class="lightbox-inner">
+        <button class="icon-btn" id="lbClose" aria-label="Close full image">Close ✕</button>
+
+        <button class="icon-btn" id="lbPrev" aria-label="Previous image">‹</button>
+
+        <figure class="lightbox-figure">
+          <img id="lbImage" src="" alt="">
+          <figcaption id="lbCaption"></figcaption>
+        </figure>
+
+        <button class="icon-btn" id="lbNext" aria-label="Next image">›</button>
+      </div>
+    </div>
+
     <script>
       document.getElementById("year").textContent = new Date().getFullYear();
 
       const toggle = document.querySelector(".nav-toggle");
       const links = document.getElementById("navLinks");
+
       toggle?.addEventListener("click", () => {
         const expanded = toggle.getAttribute("aria-expanded") === "true";
         toggle.setAttribute("aria-expanded", String(!expanded));
         links.classList.toggle("open");
       });
-    // </script>
+
+      const featuredCards = Array.from(document.querySelectorAll(".featured-grid .card"));
+      const lightbox = document.getElementById("lightbox");
+      const lbImage = document.getElementById("lbImage");
+      const lbCaption = document.getElementById("lbCaption");
+      const lbClose = document.getElementById("lbClose");
+      const lbPrev = document.getElementById("lbPrev");
+      const lbNext = document.getElementById("lbNext");
+
+      let currentIndex = 0;
+
+      function openLightbox(index) {
+        const card = featuredCards[index];
+        const img = card.querySelector("img");
+        const caption = card.querySelector("figcaption");
+
+        currentIndex = index;
+        lbImage.src = img.src;
+        lbImage.alt = img.alt;
+        lbCaption.innerHTML = caption ? caption.innerHTML : "";
+
+        lightbox.classList.add("open");
+        lightbox.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove("open");
+        lightbox.setAttribute("aria-hidden", "true");
+        document.body.style.overflow = "";
+      }
+
+      function showNextImage() {
+        currentIndex = (currentIndex + 1) % featuredCards.length;
+        openLightbox(currentIndex);
+      }
+
+      function showPreviousImage() {
+        currentIndex = (currentIndex - 1 + featuredCards.length) % featuredCards.length;
+        openLightbox(currentIndex);
+      }
+
+      featuredCards.forEach((card, index) => {
+        card.style.cursor = "pointer";
+
+        card.addEventListener("click", () => {
+          openLightbox(index);
+        });
+      });
+
+      lbClose.addEventListener("click", closeLightbox);
+      lbNext.addEventListener("click", showNextImage);
+      lbPrev.addEventListener("click", showPreviousImage);
+
+      lightbox.addEventListener("click", (event) => {
+        if (event.target === lightbox) {
+          closeLightbox();
+        }
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (!lightbox.classList.contains("open")) return;
+
+        if (event.key === "Escape") closeLightbox();
+        if (event.key === "ArrowRight") showNextImage();
+        if (event.key === "ArrowLeft") showPreviousImage();
+      });
+    </script>
+
+    <script src="background.js"></script>
+  </body>
+</html>
     <script src="background.js"></script>
   </body>
 </html>
